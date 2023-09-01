@@ -1,0 +1,17 @@
+Vagrant.configure("2") do |config|
+  # VM 1
+  config.vm.define "postgresql15-db01" do |postgresql15-db01|
+    postgresql15-db01.vm.box = "ubuntu/bionic64"
+    postgresql15-db01.vm.hostname = "pg-postgresql15-db01"
+    postgresql15-db01.vm.network "private_network", type: "dhcp"
+    postgresql15-db01.vm.provision "shell", path: "provision.sh"
+  end
+
+  # VM 2
+  config.vm.define "postgresql15-db02" do |postgresql15-db02|
+    postgresql15-db02.vm.box = "ubuntu/bionic64"
+    postgresql15-db02.vm.hostname = "pg-postgresql15-db02"
+    postgresql15-db02.vm.network "private_network", type: "dhcp"
+    postgresql15-db02.vm.provision "shell", path: "provision.sh"
+  end
+end
